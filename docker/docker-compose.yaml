@@ -129,8 +129,8 @@ services:
       # Mount the storage directory to the container, for storing user files.
       - ./volumes/app/storage:/app/api/storage
     # uncomment to expose dify-api port to host
-    # ports:
-    #   - "5001:5001"
+    ports:
+      - "5001:5001"
 
   # worker service
   # The Celery worker for processing the queue.
@@ -221,8 +221,8 @@ services:
       # The DSN for Sentry error reporting. If not set, Sentry error reporting will be disabled.
       SENTRY_DSN: ''
     # uncomment to expose dify-web port to host
-    # ports:
-    #   - "3000:3000"
+    ports:
+      - "3000:3000"
 
   # The postgres database.
   db:
@@ -259,8 +259,8 @@ services:
     healthcheck:
       test: [ "CMD", "redis-cli", "ping" ]
     # uncomment to expose redis port to host
-    # ports:
-    #   - "6379:6379"
+    ports:
+      - "6379:6379"
 
   # The Weaviate vector store.
   weaviate:
@@ -283,8 +283,8 @@ services:
       AUTHORIZATION_ADMINLIST_ENABLED: 'true'
       AUTHORIZATION_ADMINLIST_USERS: 'hello@dify.ai'
     # uncomment to expose weaviate port to host
-    # ports:
-    #  - "8080:8080"
+    ports:
+     - "8080:8080"
 
   # Qdrant vector store.
   # uncomment to use qdrant as vector store.
