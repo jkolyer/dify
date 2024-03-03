@@ -7,10 +7,10 @@ from extensions.ext_database import db
 from libs.helper import email, str_len
 from libs.password import valid_password
 from models.model import DifySetup
-from services.account_service import AccountService, RegisterService, TenantService
+from services.account_service import AccountService, RegisterService
 
 from . import api
-from .error import AlreadySetupError, NotInitValidateError, NotSetupError
+from .error import NotInitValidateError, NotSetupError
 from .init_validate import get_init_validate_status
 from .wraps import only_edition_self_hosted
 
@@ -30,6 +30,7 @@ class SetupApi(Resource):
 
     @only_edition_self_hosted
     def post(self):
+        '''
         # is set up
         if get_setup_status():
             raise AlreadySetupError()
@@ -41,12 +42,13 @@ class SetupApi(Resource):
     
         if not get_init_validate_status():
             raise NotInitValidateError()
+        '''
 
         parser = reqparse.RequestParser()
         parser.add_argument('email', type=email,
                             required=True, location='json')
         parser.add_argument('name', type=str_len(
-            30), required=True, location='json')
+            48), required=True, location='json')
         parser.add_argument('password', type=valid_password,
                             required=True, location='json')
         args = parser.parse_args()
