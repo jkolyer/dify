@@ -7,10 +7,10 @@ from extensions.ext_database import db
 from libs.helper import email, str_len
 from libs.password import valid_password
 from models.model import DifySetup
-from services.account_service import AccountService, RegisterService, TenantService
+from services.account_service import AccountService, RegisterService
 
 from . import api
-from .error import AlreadySetupError, NotInitValidateError, NotSetupError
+from .error import NotInitValidateError, NotSetupError
 from .init_validate import get_init_validate_status
 from .wraps import only_edition_self_hosted
 
